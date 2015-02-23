@@ -8,8 +8,8 @@ target_movie_list = ("tt2084970", "tt0074860", "tt2562232")
 
 # Create a dictionary of YouTube URL's for the movie trailer for each movie in target_movie_list:
 trailers = {"tt2084970":"https://www.youtube.com/watch?v=S5CjKEFb-sM",
-			"tt0074860":"https://www.youtube.com/watch?v=OK26KtN99R4",
-			"tt2562232": "https://www.youtube.com/watch?v=8jAfBd3g6bA"}
+            "tt0074860":"https://www.youtube.com/watch?v=OK26KtN99R4",
+            "tt2562232": "https://www.youtube.com/watch?v=8jAfBd3g6bA"}
 # >>> need an error routine to check if a youtube video is included
 
 # Read JSON from OMDB for each movie.  Convert each json set to a dictionary and save to a list:
@@ -28,21 +28,19 @@ for movie in target_movie_list:
 # and store to a list of class instances for Fresh_Tomatoes:
 final_movie_list = []
 
-for target_dict in omdb_dict_list:	
-	m = media2.Movie()
-	m.title = target_dict["Title"]
-	m.storyline = target_dict["Plot"]
-	m.poster_image_url = target_dict["Poster"]
-	m.genre = target_dict["Genre"]
-	m.duration = target_dict["Runtime"]
-	m.rating = target_dict["Rated"]
-	m.year = target_dict["Year"]
+for target_dict in omdb_dict_list:
+    m = media2.Movie()
+    m.title = target_dict["Title"]
+    m.storyline = target_dict["Plot"]
+    m.poster_image_url = target_dict["Poster"]
+    m.genre = target_dict["Genre"]
+    m.duration = target_dict["Runtime"]
+    m.rating = target_dict["Rated"]
+    m.year = target_dict["Year"]
 	#Trailer is pulled from the trailer list using the string version of the unicode imdbID:
-	m.trailer_youtube_url = trailers[str(target_dict["imdbID"])]
+    m.trailer_youtube_url = trailers[str(target_dict["imdbID"])]
 	#append each instance to a list:
-	final_movie_list.append(m)
-
-
+    final_movie_list.append(m)
 
 #Call fresh_tomatoes to display a webbrower page listing all the movies:
 omdb_fresh_tomatoes.open_movies_page(final_movie_list)
